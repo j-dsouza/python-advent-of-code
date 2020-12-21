@@ -1,13 +1,6 @@
 from typing import List
 
 
-# class Bag:
-#     def __init__(self, rules: str):
-
-#     def __repr__(self):
-#         return f"outer: {self.outer}, inner: {self.inner}"
-
-
 def parse(filename: str) -> dict:
     with open(filename, "r") as f:
         lines = f.readlines()
@@ -37,31 +30,16 @@ def pt_1(bags, colour, top_colours):
     return top_colours
 
 
-# def pt_2(bags, colour, total_bags):
-#     contents = bags[colour]
-#     for new_col in contents.keys():
-#         print(f"{new_col}, {contents[new_col]}, {total_bags}")
-#         # import pdb; pdb.set_trace()
-#         total_bags += contents[new_col] * pt_2(bags, new_col, total_bags)
-        
-
-#     return total_bags
-
 def pt_2(bags, colour, no):
     total = 0
     contents = bags[colour]
     total += no
     for new_col in contents.keys():
         if bags[new_col]:
-            # print(f"{new_col}, {contents[new_col]}, {no}, {bool(bags[new_col])}")
-            # total += contents[new_col]
             total += no * pt_2(bags, new_col, contents[new_col])
         else:
-            # print(f"{new_col}, {contents[new_col]}, {no}")
-            # total += contents[new_col]
             total += no * contents[new_col]
 
-    # total -= contents[new_col]
     return total
     
 
